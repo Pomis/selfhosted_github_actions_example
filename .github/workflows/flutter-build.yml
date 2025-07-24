@@ -1,0 +1,45 @@
+name: Flutter Build and Upload
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: self-hosted
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    
+    - name: Setup Flutter
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: 'stable'
+        channel: 'stable'
+    
+    - name: Get dependencies
+      run: flutter pub get
+    
+    - name: Build APK
+      run: flutter build apk --release
+    
+    - name: Build App Bundle
+      run: flutter build appbundle --release
+    
+    - name: Upload APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+        retention-days: 30
+    
+    - name: Upload App Bundle
+      uses: actions/upload-artifact@v4
+      with:
+        name: flutter-appbundle
+        path: build/app/outputs/bundle/release/app-release.aab
+        retention-days: 30
