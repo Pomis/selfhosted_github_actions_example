@@ -14,7 +14,7 @@ jobs:
     env:
       ANDROID_HOME: ~/Android/sdk
       JAVA_HOME: /opt/homebrew/opt/openjdk@17
-      PATH: ${{ github.env.PATH }}:~/Android/sdk/platform-tools:~/Android/sdk/cmdline-tools/latest/bin:/opt/homebrew/opt/openjdk@17/bin
+      PATH: /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin:~/Android/sdk/platform-tools:~/Android/sdk/cmdline-tools/latest/bin:/opt/homebrew/opt/openjdk@17/bin
     
     steps:
     - name: Checkout code
