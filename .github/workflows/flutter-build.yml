@@ -25,9 +25,6 @@ jobs:
       with:
         channel: 'stable'
     
-    - name: Accept Android licenses
-      run: yes | flutter doctor --android-licenses || true
-    
     - name: Get dependencies
       run: flutter pub get
     
