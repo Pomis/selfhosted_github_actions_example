@@ -11,6 +11,11 @@ jobs:
   build:
     runs-on: self-hosted
     
+    env:
+      ANDROID_HOME: ~/Android/sdk
+      JAVA_HOME: /opt/homebrew/opt/openjdk@17
+      PATH: ${{ github.env.PATH }}:~/Android/sdk/platform-tools:~/Android/sdk/cmdline-tools/latest/bin:/opt/homebrew/opt/openjdk@17/bin
+    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
@@ -19,6 +24,9 @@ jobs:
       uses: subosito/flutter-action@v2
       with:
         channel: 'stable'
+    
+    - name: Accept Android licenses
+      run: yes | flutter doctor --android-licenses || true
     
     - name: Get dependencies
       run: flutter pub get
