@@ -11,11 +11,6 @@ jobs:
   build:
     runs-on: self-hosted
     
-    env:
-      ANDROID_HOME: ~/Android/sdk
-      JAVA_HOME: /opt/homebrew/opt/openjdk@17
-      PATH: /usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/homebrew/bin:~/Android/sdk/platform-tools:~/Android/sdk/cmdline-tools/latest/bin:/opt/homebrew/opt/openjdk@17/bin
-    
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
